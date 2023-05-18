@@ -1,8 +1,8 @@
 name: model-training-ev
-on: [push]
+on: [ push ]
 jobs:
   run:
-    runs-on: [ubuntu-latest]
+    runs-on: [ ubuntu-latest ]
     container: s487197/ium:56
     steps:
       - uses: actions/checkout@v2
@@ -13,12 +13,12 @@ jobs:
           python3 data.py
           python3 ium_train.py
           python3 ium_predict.py
-          
+
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v3
         with:
-            name: model
-            path: baltimore.zip  
+          name: model
+          path: baltimore.zip
 
 
           
