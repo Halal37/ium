@@ -6,6 +6,7 @@ jobs:
     container: s487197/ium:56
     steps:
       - uses: actions/checkout@v2
+      - uses: iterative/setup-cml@v1
       - name: Train-ev model
         run: |
           python3 data.py
