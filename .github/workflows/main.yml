@@ -1,21 +1,19 @@
-name: model-training
+name: model-training-ev
 on: [push]
 jobs:
   run:
     runs-on: [ubuntu-latest]
+    container: s487197/ium:56
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: iterative/setup-cml@v1
-      - name: Train model
-        env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Train-ev model
         run: |
-          pip install -r requirements.txt
-          python ium_train.py
+          python3 data.py
+          python3 ium_train.py
+          python3 ium_predict.py
 
-          cat metrics.txt >> report.md
-          cml-publish confusion_matrix.png --md >> report.md
+          cat metrics.csv >> report.md
+          cml-publish metrics_img.png --md >> report.md
           cml-send-comment report.md
         
 
