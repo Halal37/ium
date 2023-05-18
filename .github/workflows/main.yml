@@ -8,14 +8,17 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/upload-artifact@v3
       - name: Train-ev model
+
         run: |
           python3 data.py
           python3 ium_train.py
           python3 ium_predict.py
+          
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v3
         with:
-          name: model
-          path: baltimore.zip
-        
+            name: model
+            path: baltimore.zip  
 
 
           
